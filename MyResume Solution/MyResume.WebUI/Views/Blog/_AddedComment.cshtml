@@ -1,0 +1,21 @@
+﻿@model BlogPostComment
+
+<li class="Model margin-bottom-30 @(Model.ParentId != null?"com-reply":"")" id="c-@Model.Id" data-Model-id="@Model.Id">
+    <div class="media">
+        <div class="media-body">
+            <div class="a-com">
+                <span class="a-name text-color-primary">@($"{Model.CreatedByUser?.Name} {Model.CreatedByUser?.Surname}")</span><span class="date">@Model.CreatedDate.ToString("MM/dd/yyyy a't' H:mm")</span>
+                <p class="margin-top-20">
+                    @if (Model.ParentId != null)
+                    {
+                        <a href="#c-@Model.ParentId">@@@($"{Model.Parent.CreatedByUser.Name} {Model.Parent.CreatedByUser.Surname}")</a>
+
+                        <span>&nbsp;&nbsp;</span>
+                    }
+                    @Model.Text
+                </p>
+                <a style="cursor: pointer" class="text-right btn-Model-reply"> REPLY <i class="fa fa-reply"></i></a>
+            </div>
+        </div>
+    </div>
+</li>

@@ -1,0 +1,68 @@
+﻿@model PagedViewModel<BlogPost>
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<!-- BLOG -->
+<div class="inside-sec">
+    <!-- BIO AND SKILLS -->
+    <h5 class="tittle">BLOG</h5>
+
+    <!-- Blog -->
+    <section class="blog blog-page padding-20 padding-top-50 padding-bottom-50">
+
+        @foreach (var item in Model.Items)
+        {
+            <article>
+                <a asp-action="Details" asp-route-slug="@item.Slug"><img class="img-responsive" src="~/uploads/images/@item.ImagePath" alt="blog-image"></a>
+                <div class="post-info">
+                    <div class="post-in">
+                        <div class="extra">
+                            <span><i class="icon-calendar"></i>@item.PublishedDate?.ToString("MMM dd, yyyy")</span>
+                            <span class="margin-left-15"><i class="icon-user"></i>Admin</span>
+                            <span class="margin-left-15"><i class="icon-bubbles"></i> Featured</span>
+                        </div>
+                        <a class="tittle-post" asp-action="Details" asp-route-slug="@item.Slug">@item.Title</a>
+                        <p class="blog-short-content">@item.Body.ToPlainText()</p>
+                        <a asp-controller="blog" asp-action="Details" asp-route-id="@item.Id" class="btn-1">
+                            Read More <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        }
+
+        <div class="row">
+            <div class="col-12">
+                <ul class="pagination">
+                    <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                    @for(int i = 1; i<=Model.MaxPageSize; i++){
+                     <li class="@(i==Model.PageIndex?"active":"")">
+                        <a asp-route-pageIndex="@i">@i</a></li>
+                    }
+                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+                <!-- End of .blog-pagination -->
+            </div>
+        </div>
+    </section>
+</div>
+@section addjs{
+    <script>
+        function goPage(pageIndex, pageSize) {
+
+            $.ajax({
+                url: `@Url.Action("Index")?pageIndex=${pageIndex}&pageSize=${pageSize}`,
+                method: 'GET',
+                success: function (response) {
+                    $('#dynamic-content').html(response);
+                    location.hash = "#dynamic-content";
+                    location.hash = "";
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+    </script>
+}

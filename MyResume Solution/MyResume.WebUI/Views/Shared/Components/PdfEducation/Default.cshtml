@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ResumeDiploma>
+
+
+@foreach (var item in Model)
+{
+    <div style="
+              display: table-cell;
+              vertical-align: top;
+              padding-right: 10px;
+            ">
+        <span style="
+                font-size: 13px;
+                font-weight: bold;
+                display: inline-block;
+                width: 130px;
+              ">@item.StartYear-@item.EndYear</span>
+    </div>
+    <div style="margin-bottom: 20px">
+        <div style="
+                box-shadow: none;
+                border-radius: 0px;
+                margin-bottom: 30px;
+                position: relative;
+                border: none;
+                margin-top: 0px;
+              ">
+            <div style="margin-right: -15px; margin-left: -15px">
+                <div style="width: 33.33333333%; float: left">
+                    @item.UniversityName / @item.Degree / @item.YearObtention
+                </div>
+                <div style="width: 66.66666667%; float: left; font-style:italic">
+                    @item.Details.ToPlainText()
+                </div>
+            </div>
+        </div>
+    </div>
+}

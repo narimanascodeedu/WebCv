@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- StyleSheets -->
+    <link rel="stylesheet" href="./css/ionicons.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <!-- FontsOnline -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+    <!-- JavaScripts -->
+    <script src="~/assets/js/vendors/modernizr.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Export</title>
+  </head>
+  <body>
+    <div
+      id="Grid"
+      style="
+        width: 1170px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      "
+    >
+      <div
+        style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        "
+      >
+        <!-- BIO AND SKILLS -->
+        <h5
+          style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          "
+        >
+          Bio
+        </h5>
+        <div style="padding: 30px">@await Component.InvokeAsync("PdfBio")</div>
+      </div>
+
+      <div
+        style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        "
+      >
+        <!-- Professional Experience -->
+        <h5
+          style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          "
+        >
+          Skills
+        </h5>
+        <div style="padding: 30px">
+          @if(item.View == null){
+          <div
+            style="
+              display: table-cell;
+              vertical-align: top;
+              padding-right: 10px;
+            "
+          >
+            <span
+              style="
+                font-size: 13px;
+                font-weight: bold;
+                display: inline-block;
+                width: 130px;
+              "
+              >@item.ResumeCategory.Name</span
+            >
+          </div>
+          <div style="margin-bottom: 20px">
+            <div
+              style="
+                box-shadow: none;
+                border-radius: 0px;
+                margin-bottom: 30px;
+                position: relative;
+                border: none;
+                margin-top: 0px;
+              "
+            >
+              <div style="margin-right: -15px; margin-left: -15px">
+                <div style="width: 33.33333333%; float: left">@item.Name</div>
+                <div style="width: 66.66666667%; float: left">
+                  @item.Description.ToPlainText()
+                </div>
+              </div>
+            </div>
+          </div>
+          } else if(item.View != null){
+          <div class="ethical">
+            <h6>@item.ResumeCategory.Name</h6>
+            <a href="#.">@item.Name</a>
+          </div>
+          }
+        </div>
+      </div>
+
+      <div
+        style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        "
+      >
+        <!-- Professional Experience -->
+        <h5
+          style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          "
+        >
+          Professional Experience
+        </h5>
+        <div style="padding: 30px">
+          <div style="margin-bottom: 40px">
+            <div
+              style="
+                display: table-cell;
+                vertical-align: top;
+                padding-right: 10px;
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  font-weight: bold;
+                  display: inline-block;
+                  width: 130px;
+                "
+                >@item.StartYear-@item.EndYear</span
+              >
+            </div>
+            <div style="margin-bottom: 20px">
+              <div
+                style="
+                  box-shadow: none;
+                  border-radius: 0px;
+                  margin-bottom: 30px;
+                  position: relative;
+                  border: none;
+                  margin-top: 0px;
+                "
+              >
+                <div style="margin-right: -15px; margin-left: -15px">
+                  <div style="width: 33.33333333%; float: left">
+                    @item.Title / @item.Location
+                  </div>
+                  <div style="width: 33.33333333%; float: left">
+                    @item.Details.ToPlainText()
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        "
+      >
+        <!-- Academic Background -->
+        <h5
+          style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          "
+        >
+          Academic Background
+        </h5>
+        <div style="padding: 30px">
+          <div
+            style="
+              display: table-cell;
+              vertical-align: top;
+              padding-right: 10px;
+            "
+          >
+            <span
+              style="
+                font-size: 13px;
+                font-weight: bold;
+                display: inline-block;
+                width: 130px;
+              "
+              >@item.StartYear-@item.EndYear</span
+            >
+          </div>
+          <div style="margin-bottom: 20px">
+            <div
+              style="
+                box-shadow: none;
+                border-radius: 0px;
+                margin-bottom: 30px;
+                position: relative;
+                border: none;
+                margin-top: 0px;
+              "
+            >
+              <div style="margin-right: -15px; margin-left: -15px">
+                <div style="width: 33.33333333%; float: left">
+                  @item.UniversityName / @item.Degree / @item.YearObtention
+                </div>
+                <div style="width: 66.66666667%; float: left">
+                  @item.Details.ToPlainText()
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    @using (Html.BeginForm("Export", "Home", FormMethod.Post)) {
+    <input type="hidden" name="GridHtml" />
+    <input
+      type="submit"
+      id="btnSubmit"
+      value="Export"
+      class="btn btn-success"
+    />
+    }
+
+    <script src="~/assets/js/vendors/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $(function () {
+        $("#btnSubmit").click(function () {
+          console.log($("input[name='GridHtml']").val($("#Grid").html()));
+          //$("input[name='GridHtml']").val($("#Grid").html());
+        });
+      });
+    </script>
+  </body>
+</html>

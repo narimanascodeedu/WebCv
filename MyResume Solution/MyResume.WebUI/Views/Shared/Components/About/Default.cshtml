@@ -1,0 +1,58 @@
+﻿@model About
+
+
+<ul class="personal-info">
+    <li>
+        <p> <span> Name</span>@Model.Name</p>
+    </li>
+    <li>
+        <p> <span> Age</span>@Model.Age</p>
+    </li>
+    <li>
+        <p>
+            @if (@Model.Location == null)
+            {
+                <span></span>
+            }
+            else
+            {
+                <span> Location</span>
+            }
+
+            @Model.Location
+        </p>
+
+    </li>
+    <li>
+        <p> <span> Experience</span>@Model.Experience </p>
+    </li>
+    <li>
+        <p> <span> Degree</span> @Model.Degree</p>
+    </li>
+    <li>
+        <p> <span> Career Level</span>@Model.CareerLevel</p>
+    </li>
+    <li>
+        <p> <span> Phone</span>@Model.Phone</p>
+    </li>
+    <li>
+        <p> <span> FAX</span>@Model.Fax </p>
+    </li>
+    <li>
+        <p> <span> E-mail</span> <a href="#."></a> @Model.Email</p>
+    </li>
+    <li>
+        <p>
+            @if (@Model.Website == null)
+            {
+                <span></span>
+            }
+            else
+            {
+                <span> Website</span>
+            }
+
+            <a href="#."></a>@Model.Website
+        </p>
+    </li>
+</ul>

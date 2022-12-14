@@ -1,0 +1,39 @@
+﻿@model About
+
+
+<h5 class="tittle">Social Profiles</h5>
+<div class="social-icon bor-btm padding-25">
+    <ul>
+        @if (Model.FacebookLink != null)
+        {
+            <li>
+                <a href="@Model.FacebookLink"> <i class="fa fa-facebook"></i></a>
+            </li>
+        }
+        @if (Model.TwitterLink != null)
+        {
+            <li>
+                <a href="@Model.TwitterLink"> <i class="fa fa-twitter"></i></a>
+            </li>
+        }
+        @if (Model.LinkedinLink != null)
+        {
+            <li>
+                <a href="@Model.LinkedinLink"> <i class="fa fa-linkedin"></i></a>
+            </li>
+        }
+        @if (Model.GitHubLink != null)
+        {
+            <li>
+                <a href="@Model.GitHubLink"> <i class="fa fa-github"></i></a>
+            </li>
+        }
+        @if (Model.YoutubeLink != null)
+        {
+
+            <li>
+                <a href="@Model.YoutubeLink"> <i class="fa fa-youtube"></i></a>
+            </li>
+        }
+    </ul>
+</div>

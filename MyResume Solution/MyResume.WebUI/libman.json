@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery.customSelect@0.5.1",
+      "destination": "wwwroot/libs/jquery.customSelect/"
+    }
+  ]
+}

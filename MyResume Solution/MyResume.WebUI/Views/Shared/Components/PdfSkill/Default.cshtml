@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ResumeSkill>
+
+
+@foreach (var item in Model)
+{
+    @if (item.View == null)
+    {
+        <div style="
+              display: table-cell;
+              vertical-align: top;
+              padding-right: 10px;
+            ">
+            <span style="
+                font-size: 13px;
+                font-weight: bold;
+                display: inline-block;
+                width: 130px;
+              ">@item.ResumeCategory.Name</span>
+        </div>
+        <div style="margin-bottom: 20px">
+            <div style="
+                box-shadow: none;
+                border-radius: 0px;
+                margin-bottom: 30px;
+                position: relative;
+                border: none;
+                margin-top: 0px;
+              ">
+                <div style="margin-right: -15px; margin-left: -15px">
+                    <div style="width: 33.33333333%; float: left">@item.Name</div>
+                    <div style="width: 66.66666667%; float: left; font-style:italic">
+                        @item.Description.ToPlainText()
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (item.View != null)
+    {
+        <div class="ethical">
+            <h6>@item.ResumeCategory.Name</h6>
+            <a href="#.">@item.Name</a>
+        </div>
+    }
+}
+

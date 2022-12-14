@@ -1,0 +1,212 @@
+﻿@model BlogPost
+@{
+    ViewData["Title"] = "Details";
+
+    IEnumerable<BlogPostComment> GetComments(BlogPostComment parent)
+    {
+        if (parent.ParentId != null)
+            yield return parent;
+
+        foreach (var item in parent.Comments.SelectMany(c => GetComments(c)))
+        {
+            yield return item;
+        }
+    }
+}
+
+<div class="inside-sec blog">
+    <!-- BIO AND SKILLS -->
+    <h5 class="tittle">BLOG POST</h5>
+
+    <!-- Blog -->
+    <article class="blog-post width-100 padding-25">
+        <div class="post-img">
+            <img src="~/uploads/images/@Model.ImagePath" alt="blog-image">
+            <span class="date-in">@Model.PublishedDate?.ToString("dd MMM")</span>
+        </div>
+
+        <!-- BLOG DETAIL -->
+        <h4 class="font-normal">@Model.Title</h4>
+        <span class="post-bt">by <span class="text-color-primary">@Model.AuthorId.ToString()</span></span>
+        <ul class="post-info">
+            <li> <i class="fa fa-comments-o"></i>97 </li>
+            <li> <i class="fa fa-eye"></i>565 </li>
+            <li> <i class="fa fa-bookmark-o"></i>Photography </li>
+            <li>  </li>
+        </ul>
+        <p>
+            @Model.Body.ToPlainText()
+        </p>
+        <div class="auther-name text-center margin-top-50">
+            <h6 class="font-12px margin-top-20 margin-bottom-10">Ramin Safarli</h6>
+            <span class="font-16px font-crimson font-italic">Writer/Personal blog</span>
+        </div>
+
+
+
+        <div class="next-prev">
+            <div class="row">
+                <div class="col-md-6 text-left"><a href="#." class="font-16px font-crimson text-uppercase"><i class="fa fa-long-arrow-left margin-right-15"></i> PREVIOUS Article</a></div>
+                <div class="col-md-6 text-right"><a href="#." class="font-16px font-crimson text-uppercase">Next Article<i class="fa fa-long-arrow-right margin-left-15"></i></a></div>
+            </div>
+        </div>
+
+
+        <div class="comments">
+
+            <!-- Main Heading -->
+            <div class="heading-side-bar margin-bottom-50 margin-top-100">
+                <h4>Comment (@Model.Comments.Count())</h4>
+            </div>
+            <ul class="comment-wrp">
+                <!-- Comments -->
+                @foreach (var comment in @Model.Comments.Where(c => c.ParentId == null))
+                {
+                    <li class="comment margin-bottom-30" id="c-@comment.Id" data-comment-id="@comment.Id">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="a-com">
+                                    <span class="a-name text-color-primary">@($"{comment.CreatedByUser?.Name} {comment.CreatedByUser?.Surname}")</span><span class="date">@comment.CreatedDate.ToString("MM/dd/yyyy a't' H:mm")</span>
+                                    <p class="margin-top-20">
+                                        @comment.Text
+                                    </p>
+                                    <a style="cursor: pointer" class="text-right btn-comment-reply"> REPLY <i class="fa fa-reply"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Comments Replay -->
+                    @foreach (var subComment in GetComments(comment))
+                    {
+                        <li class="comment com-reply" id="c-@subComment.Id" data-comment-id="@subComment.Id">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div class="a-com">
+                                        <span class="a-name ">@($"{subComment.CreatedByUser?.Name} {subComment.CreatedByUser?.Surname}")</span><span class="date">@subComment.CreatedDate.ToString("MM/dd/yyyy a't' H:mm")</span>
+                                        <p class="margin-top-20">
+                                            <a href="#c-@subComment.ParentId">@@@($"{subComment.Parent.CreatedByUser.Name} {subComment.Parent.CreatedByUser.Surname}")</a>&nbsp;&nbsp;
+                                            @subComment.Text
+                                        </p>
+                                        <a style="cursor: pointer" class="text-right btn-comment-reply"> REPLY <i class="fa fa-reply"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+
+
+                @*<li class="text-center more-comments"><a href="#.">MORE COMMENT <i class="fa fa-angle-down"></i></a></li>*@
+            </ul>
+
+            <!-- Comments Form -->
+            <div class="comment-form">
+                <!-- Main Heading -->
+                <div class="heading-side-bar margin-bottom-50 margin-top-80">
+                    <h4>Post to Reply</h4>
+                </div>
+                <form method="post" id="sendComment">
+                    <ul class="row">
+                        <li class="col-sm-12">
+                            <div id="replyToComment"></div>
+                        </li>
+                        <li class="col-sm-12">
+                            <input type="hidden" name="postId" value="@Model.Id" />
+                            <textarea name="Comment" placeholder="YOUR MESSAGE"></textarea>
+                        </li>
+                        <li class="col-sm-12">
+                            <button type="submit" class="btn btn-dark">POST COMMENT </button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+
+    </article>
+</div>
+
+@section addcss{
+    <style>
+        #replyToComment {
+            position: relative;
+        }
+
+            #replyToComment .a-com {
+                border: none;
+            }
+
+            #replyToComment .com-reply {
+                margin-left: 0 !important;
+                border: 1px solid #ebebeb;
+            }
+
+        #close-selected {
+            position: absolute;
+            color: red;
+            font-size: 2rem;
+            right: 40px;
+            top: 30px;
+            width: 0;
+            display: inline;
+            margin: 0;
+        }
+    </style>
+}
+
+    @section addjs{
+    <script>
+        $(document).ready(function() {
+            $('.btn-comment-reply').click(function(e) {
+                e.preventDefault();
+
+                $('#replyToComment').html('<a href="javascript:removeSelected()" id="close-selected">&times;</a>').append($(e.currentTarget).closest('.comment').clone());
+            })
+        });
+
+        function removeSelected(element) {
+            $('#replyToComment').html('');
+        }
+
+        $('#sendComment').submit(function(e) {
+            e.preventDefault();
+
+            let formData = new FormData(e.currentTarget);
+
+            let toCommentId = $('#replyToComment li.comment').data('commentId');
+
+            if (toCommentId != undefined) {
+                formData.set("commentId", toCommentId);
+            }
+
+            $.ajax({
+                url: '@Url.Action("PostComment")',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                dataType: 'html',
+                success: function(response) {
+
+                    console.log($('ul.comment-wrp'));
+
+                    if (toCommentId != undefined) {
+                        $(response).insertAfter($(`#c-${toCommentId}`));
+                    }
+                    else
+                    {
+                        $('ul.comment-wrp').append($(response));
+                    }
+                    $('#replyToComment').html('');
+
+                    e.currentTarget.reset();
+                },
+                error: function(response) {
+                    console.warn(response);
+                }
+
+            });
+        });
+    </script>
+}

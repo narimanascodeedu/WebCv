@@ -1,0 +1,96 @@
+﻿<nav class="pcoded-navbar">
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="pcoded-navigatio-lavel">İdarəetmə</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a asp-controller="dashboard" asp-action="index">
+                    <span class="pcoded-micon">
+                        <i class="feather icon-home"></i>
+                    </span>
+                    <span class="pcoded-mtext">Ana səhifə</span>
+                </a>
+            </li>
+                    <li>
+                        <a asp-controller="Abouts" asp-action="index">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-mail"></i>
+                            </span>
+                            <span class="pcoded-mtext">About</span>
+                        </a>
+                    </li>
+           
+            <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style1">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-inbox"></i></span>
+                    <span class="pcoded-mtext">BlogPosts</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a asp-controller="blogposts" asp-action="index">
+                            <span class="pcoded-mtext">Posts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="blogposts" asp-action="deletedposts">
+                            <span class="pcoded-mtext">Deleted Posts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="BlogPostComments" asp-action="Index">
+                            <span class="pcoded-mtext">Comments</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style1">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-inbox"></i></span>
+                    <span class="pcoded-mtext">Resume</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a asp-controller="resumebios" asp-action="index">
+                            <span class="pcoded-mtext">Bio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="resumeskills" asp-action="index">
+                            <span class="pcoded-mtext">Skills</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="resumeexperiences" asp-action="index">
+                            <span class="pcoded-mtext">Experience</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="resumediplomas" asp-action="index">
+                            <span class="pcoded-mtext">Diploma</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a asp-controller="ContactPosts" asp-action="index">
+                    <span class="pcoded-micon">
+                        <i class="feather icon-mail"></i>
+                    </span>
+                    <span class="pcoded-mtext">Müraciətlər</span>
+                </a>
+            </li>
+        </ul>
+        <div class="pcoded-navigatio-lavel">Parametrlər</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="#">
+                    <span class="pcoded-micon">
+                        <i class="feather icon-users"></i>
+                    </span>
+                    <span class="pcoded-mtext">İstifadəçilər</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

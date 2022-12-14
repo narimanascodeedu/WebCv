@@ -1,0 +1,69 @@
+﻿@model IEnumerable<About>
+@{
+    ViewData["Title"] = "About me";
+}
+<!-- ABOUT ME -->
+<div class="inside-sec">
+    <!-- BIO AND SKILLS -->
+    <h5 class="tittle">About Me</h5>
+
+    <!-- Blog -->
+    <section class="about-me padding-top-10">
+        <!-- Personal Info -->
+        @await Component.InvokeAsync("About");
+
+        <!-- I’m Web Designer -->
+        @foreach (var item in Model)
+        {
+            <h5 class="tittle">@item.ShortDescription</h5>
+            <div class="padding-20">
+                <p>
+                    @Html.Raw(@item.LongDescription)
+                </p>
+            </div>
+        }
+
+
+        <!-- Services -->
+        <h5 class="tittle">Services</h5>
+        <div class="row padding-20 margin-top-50">
+            <!-- Icon -->
+            @foreach (var item in Model)
+            {
+                @foreach (var md in item.Services)
+                {
+                    <div class="col-md-4 text-center">
+                        <div class="icon-box i-large ib-black">
+                            <div class="ib-icon">
+                                <i class="@md.IconKey"></i>
+                            </div>
+                            <div class="ib-info">
+                                <h4 class="h6">@md.Text</h4>
+                                <p>
+                                    @md.Description
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+        <!-- Skills -->
+        <h5 class="tittle">Skills</h5>
+
+        <!-- Sound Engineering -->
+        <div class="panel-group accordion padding-20"
+             id="accordion">
+            @await Component.InvokeAsync("SkillsForHome")
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+

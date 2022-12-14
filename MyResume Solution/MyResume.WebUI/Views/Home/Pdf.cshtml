@@ -1,0 +1,153 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- StyleSheets -->
+    <link rel="stylesheet" href="~/assets/css/ionicons.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link rel="stylesheet" href="~/assets/css/responsive.css" />
+
+    <!-- FontsOnline -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900"
+          rel="stylesheet" />
+
+
+    <!-- JavaScripts -->
+    <script src="~/assets/js/vendors/modernizr.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Export</title>
+</head>
+<body>
+
+    <div id="Grid"
+         style="
+        width: 1170px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      ">
+        <div style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        ">
+            <!-- BIO AND SKILLS -->
+            <h5 style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          ">
+                Bio
+            </h5>
+            <div style="padding: 30px">@await Component.InvokeAsync("PdfBio")</div>
+        </div>
+
+        <div style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        ">
+            <!-- Professional Experience -->
+            <h5 style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          ">
+                Skills
+            </h5>
+            <div style="padding: 30px">
+                 @await Component.InvokeAsync("PdfSkill")
+            </div>
+        </div>
+
+        <div style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        ">
+            <!-- Professional Experience -->
+            <h5 style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          ">
+                Professional Experience
+            </h5>
+            <div style="padding: 30px">
+                 @await Component.InvokeAsync("PdfExperience")
+            </div>
+        </div>
+
+        <div style="
+          width: 100%;
+          display: inline-block;
+          background: #fff;
+          margin-top: 30px;
+        ">
+            <!-- Academic Background -->
+            <h5 style="
+            font-size: 18px;
+            padding: 20px;
+            margin: 0px;
+            color: #333333;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e6e6e6;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Raleway', sans-serif;
+          ">
+                Academic Background
+            </h5>
+            <div style="padding: 30px">
+                @await Component.InvokeAsync("PdfEducation")
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Export", "Home", FormMethod.Post))
+    {
+        <input type="hidden" name="GridHtml" />
+        <input type="submit" id="btnSubmit" value="Export" class="btn btn-success" />
+    }
+
+
+    <script src="~/assets/js/vendors/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $("#btnSubmit").click(function() {
+                //console.log($("input[name='GridHtml']").val($("#Grid").html()));
+                $("input[name='GridHtml']").val($("#Grid").html());
+            });
+        });
+    </script>
+</body>
+</html>

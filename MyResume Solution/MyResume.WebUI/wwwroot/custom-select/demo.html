@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>jQuery Custom Select Generator Example</title>
+	<link type="text/css" rel="stylesheet" href="customSelect.jquery.css" />
+</head>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+<div class="container">
+	<h1>jQuery Custom Select Generator Example</h1>
+	<div id="contactform">
+		<form action="" method="">
+			<input type="hidden" id="countrySelect" value="" />
+		</form>
+		<p id="currentValue">Current value is: ''</p>
+	</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="customSelect.jquery.js"></script>
+<script type="text/javascript">
+	$('#countrySelect').customSelect({
+		identifier: 'demo',
+		selector: '#countrySelect',
+		placeholder: 'Select your country',
+		options: [
+			['ct', 'ct.png', 'Catalonia'],
+			['es', 'es.png', 'Spain'],
+			['gb', 'gb.png', 'Great Britain'],
+			['de', 'de.png', 'Germany'],
+			['it', 'it.png', 'Italy'],
+			['fi', 'fi.png', 'Finland'],
+			['fr', 'fr.png', 'France']
+		],
+		template: "<div class='jqcs_option' data-select-value='$0' style='background-image:url(example_icons/$1);'>$2</div>"
+	});
+</script>
+</body>
+
+</html>

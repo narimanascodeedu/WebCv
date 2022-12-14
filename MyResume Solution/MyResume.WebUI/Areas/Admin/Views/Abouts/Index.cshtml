@@ -1,0 +1,194 @@
+﻿@model IEnumerable<About>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@if (!Model.Any())
+{
+    <p>
+        <a asp-action="Create">Write about you</a>
+    </p>
+}
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Experience)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Degree)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Degree)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CareerLevel)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.CareerLevel)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fax)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fax)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FacebookLink)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacebookLink)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TwitterLink)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.TwitterLink)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkedinLink)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkedinLink)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GitHubLink)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.GitHubLink)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.YoutubeLink)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.YoutubeLink)
+            </td>
+        </tr>
+        <tr>
+            @{
+                int sum = item.Services.Count + 1;
+                <th rowspan="@sum">
+                    @Html.DisplayNameFor(model => model.Services)
+                </th>
+            }
+        </tr>
+        @foreach (var md in item.Services)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => md.Text)
+                </td>
+            </tr>
+        }
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LongDescription)
+            </th>
+            <td>
+                @Html.Raw(item.LongDescription)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+        </tr>
+        <tr>
+            <td class="d-flex">
+                <a class="btn btn-info mr-2" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+
+<style>
+
+    .table tr td {
+        white-space: normal;
+    }
+</style>

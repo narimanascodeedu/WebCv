@@ -1,0 +1,28 @@
+Single Admin User (AdminRole)   |  portfolio sahibine =>>> admin
+
+Admin portfolio sahibidir,Ikinci admin yaratmaq mumkun olmur
+
+Postlar yaratmaq admine aiddir
+
+Portfolionu ancaq admin redakte ede biler
+
+admin yazdigi melumatlara gore programdan admin.pdf (export as pdf file)
+
+--------------------------------------------------
+Oxucularimiz bize sual unvanlaya bilmelidir (ContactPost)
+
+Oxucularimiz qeydiyyatdan kece biler (bu halda admin panele girish mumkun deyil)
+Oxucularimiz paylasdigimiz posta sherh ede biler(mutleq login olmalidir)
+
+
+--------------------------------------------------
+Kod telebleri
+
+CQRS
+ViewComponent - (PROFESSIONAL DETAILS)
+Membership (ama Sadece Rollarla | policies/claims samil edilmir)
+
+Contact Post - Admine gonderilen muracietleri adminpanelde gormek ve cabavlandirmaq
+		- admin cavablandiranda istifadecinin e-mailine cavabin nusxesi getsin
+
+
